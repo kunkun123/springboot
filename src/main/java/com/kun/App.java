@@ -15,7 +15,7 @@ import com.kun.sercurity.repository.SysUser;
 import com.kun.sercurity.service.UserService;
 
 /**
- * SpringBoot11122
+ * SpringBoot启动类
  * 
  * @author Administrator
  *
