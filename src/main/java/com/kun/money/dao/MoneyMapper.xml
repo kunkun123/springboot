@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kun.money.dao.MoneyMapper">
+    <resultMap id="moneyMap" type="com.kun.money.repository.Money">
+        <id property="id" column="id" />
+        <result property="accountId" column="accountId" />
+        <result property="num" column="num" />
+    </resultMap>
+	<update id="updateDecrease" parameterType="com.kun.money.repository.Money">
+		update money set num = (num-#{num,jdbcType=DOUBLE}) where accountid = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateIncrease" parameterType="com.kun.money.repository.Money">
+		update money set num = (num+#{num,jdbcType=DOUBLE}) where accountid = #{id,jdbcType=VARCHAR}
+	</update>
+	<delete id="delete">
+		delete  from money where id = #{id,jdbcType=VARCHAR}
+	</delete>
+</mapper>
+

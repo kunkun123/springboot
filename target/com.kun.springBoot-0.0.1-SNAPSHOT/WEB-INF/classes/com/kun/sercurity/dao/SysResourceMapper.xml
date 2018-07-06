@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kun.sercurity.dao.SysResourceMapper">
+    <resultMap id="resourceMap" type="com.kun.sercurity.repository.SysResource">
+        <id property="id" column="id" jdbcType="VARCHAR"/>
+        <result property="resourceString" column="resourceString" jdbcType="VARCHAR"/>
+        <result property="resourceId" column="resourceId" jdbcType="VARCHAR"/>
+        <result property="remark" column="remark" jdbcType="VARCHAR"/>
+        <result property="resourceName" column="resourceName" jdbcType="VARCHAR"/>
+         <result property="methodName" column="methodName" jdbcType="VARCHAR"/>
+        <result property="methodPath" column="methodPath" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="findByRoleName" resultType="java.util.HashMap" parameterType="String">
+		select  s_resource.* from s_resource s_resource 
+			where s_resource.resourceId in 
+			(select resourceId from s_resource_role where roleId in 
+				(select id from s_role where name = #{auth}))
+	</select>
+</mapper>
+
